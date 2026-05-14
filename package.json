@@ -2,10 +2,13 @@
   "name": "tnt-studio-v2",
   "version": "2.0.0",
   "private": true,
-  "description": "TNT Studio V2 - desktop story studio for drama/revenge narrative planning and generation.",
-  "main": "main.js",
+  "description": "TNT Studio V2 — Siêu ứng dụng viết content drama Hàn Quốc & Nhật Bản với 5 preset thể loại",
   "author": "TNT Studio",
-  "dependencies": {
-    "playwright": "^1.53.2"
-  }
+  "keywords": ["content-writing", "drama", "korean", "japanese", "story-generator", "vietnamese"],
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "dev": "npx serve . -p 3000"
+  },
+  "homepage": "./",
+  "dependencies": {}
 }

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TNT Studio — Siêu Ứng Dụng Viết Content</title>
+  <link rel="stylesheet" href="src/styles/main.css" />
+  <!-- Favicon inline -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo">
+        <div class="logo-icon">🎬</div>
+        <span>TNT <span>Studio</span></span>
+      </div>
+      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.3rem">Siêu ứng dụng viết content</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Điều hướng</div>
+
+      <div class="nav-item active" data-page="home">
+        <span class="icon">🏠</span> Trang chủ
+      </div>
+      <div class="nav-item" data-page="generator">
+        <span class="icon">✨</span> Tạo câu chuyện
+      </div>
+      <div class="nav-item" data-page="library">
+        <span class="icon">📚</span> Thư viện
+      </div>
+      <div class="nav-item" data-page="dna">
+        <span class="icon">🧬</span> DNA Phân tích
+      </div>
+
+      <div class="nav-section-label" style="margin-top:1rem">Preset</div>
+      <div class="nav-item" data-page="generator" onclick="window.TNTApp&&window.TNTApp.navigate('generator');setTimeout(()=>document.getElementById('preset-cards')?.scrollIntoView({behavior:'smooth'}),100)">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--preset-military);display:inline-block"></span>
+        <span style="font-size:0.85rem">Doanh Trại HQ</span>
+      </div>
+      <div class="nav-item" data-page="generator">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--preset-revenge);display:inline-block"></span>
+        <span style="font-size:0.85rem">Trả Đũa HQ</span>
+      </div>
+      <div class="nav-item" data-page="generator">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--preset-aristocrat);display:inline-block"></span>
+        <span style="font-size:0.85rem">Hào Môn NB</span>
+      </div>
+      <div class="nav-item" data-page="generator">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--preset-emotional);display:inline-block"></span>
+        <span style="font-size:0.85rem">Gia Đình NB</span>
+      </div>
+      <div class="nav-item" data-page="generator">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--preset-shock);display:inline-block"></span>
+        <span style="font-size:0.85rem">Japan Shock</span>
+      </div>
+    </nav>
+
+    <div style="padding:0 1.25rem">
+      <div style="background:rgba(245,166,35,0.07);border:1px solid rgba(245,166,35,0.2);border-radius:var(--radius-sm);padding:0.85rem;font-size:0.8rem;color:var(--text-secondary);line-height:1.55">
+        💡 <strong style="color:var(--gold)">Mẹo:</strong> Chọn preset → Điền thông tin → Nhấn Tạo câu chuyện để bắt đầu
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+  <div class="main-content">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="flex items-center gap-2">
+        <button class="btn btn-ghost btn-icon" id="btn-menu" style="display:none" title="Menu">☰</button>
+        <div class="logo" style="font-size:1rem">
+          <span id="navbar-page-title" style="color:var(--text-secondary);font-weight:400">Trang chủ</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1">
+        <button class="btn btn-outline btn-sm" onclick="window.TNTApp.navigate('library')">📚 Thư viện</button>
+        <button class="btn btn-primary btn-sm" onclick="window.TNTApp.navigate('generator')">✨ Tạo mới</button>
+      </div>
+    </nav>
+
+    <!-- ─────────────── PAGE: HOME ─────────────── -->
+    <section class="page page-section" id="page-home">
+      <div class="page-title">Xin chào! 👋</div>
+      <div class="page-subtitle">TNT Studio — Siêu ứng dụng viết content drama Hàn Quốc & Nhật Bản</div>
+
+      <!-- Stats -->
+      <div id="stats-container" class="stats-grid"></div>
+
+      <hr class="divider" />
+
+      <!-- Hero banner -->
+      <div style="background:linear-gradient(135deg,#13131f 0%,#1a1026 100%);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;text-align:center;margin-bottom:2rem">
+        <div style="font-size:3.5rem;margin-bottom:1rem">🎬</div>
+        <h2 style="font-size:1.6rem;font-weight:800;margin-bottom:0.6rem">Tạo câu chuyện <span style="color:var(--gold)">đỉnh cao</span> trong vài giây</h2>
+        <p style="color:var(--text-secondary);max-width:520px;margin:0 auto 1.5rem;line-height:1.7">5 thể loại preset với DNA được phân tích sâu — mỗi câu chuyện được tạo ra đều mang đặc trưng riêng của từng thể loại drama.</p>
+        <button class="btn btn-primary btn-lg" onclick="window.TNTApp.navigate('generator')">✨ Bắt đầu tạo câu chuyện</button>
+      </div>
+
+      <!-- 5 Preset showcase -->
+      <div class="section-title">5 Thể Loại <span>Preset</span></div>
+      <div class="presets-grid" style="margin-bottom:2rem">
+
+        <div class="preset-card doanhTraiHanQuoc" onclick="window.TNTApp.navigate('generator');setTimeout(()=>{document.querySelector('.preset-card.doanhTraiHanQuoc')?.click()},100)">
+          <div class="preset-card__icon">🪖</div>
+          <div class="preset-card__name">Doanh Trại Ngột Ngạt</div>
+          <div class="preset-card__desc">Hàn Quốc · Áp bức hệ thống, tình đồng đội, ý chí vượt lên</div>
+        </div>
+
+        <div class="preset-card quanDoiTraDuaHanQuoc" onclick="window.TNTApp.navigate('generator')">
+          <div class="preset-card__icon">⚔️</div>
+          <div class="preset-card__name">Quân Đội Trả Đũa</div>
+          <div class="preset-card__desc">Hàn Quốc · Phục thù máu lạnh, bẫy quyền lực, công lý muộn màng</div>
+        </div>
+
+        <div class="preset-card haoMonLatMatNhatBan" onclick="window.TNTApp.navigate('generator')">
+          <div class="preset-card__icon">🏯</div>
+          <div class="preset-card__name">Hào Môn Lật Mặt</div>
+          <div class="preset-card__desc">Nhật Bản · Gia tộc quyền quý, dao đâm sau lưng, bí mật gia đình</div>
+        </div>
+
+        <div class="preset-card giaDinhCamXucNhatBan" onclick="window.TNTApp.navigate('generator')">
+          <div class="preset-card__icon">🌸</div>
+          <div class="preset-card__name">Gia Đình Cảm Xúc</div>
+          <div class="preset-card__desc">Nhật Bản · Tình thân chữa lành, vết thương thế hệ, nước mắt thầm lặng</div>
+        </div>
+
+        <div class="preset-card japanShockSerialized" onclick="window.TNTApp.navigate('generator')">
+          <div class="preset-card__icon">🌀</div>
+          <div class="preset-card__name">Japan Shock Serial</div>
+          <div class="preset-card__desc">Nhật Bản · Twist dồn dập, cliffhanger mỗi tập, thực tại lật ngược</div>
+        </div>
+
+      </div>
+
+      <!-- Quick actions -->
+      <div class="section-title">Bắt đầu nhanh</div>
+      <div class="flex gap-2" style="flex-wrap:wrap">
+        <button class="btn btn-outline" onclick="window.TNTApp.navigate('library')">📂 Mở thư viện</button>
+        <button class="btn btn-outline" onclick="window.TNTApp.navigate('dna')">🧬 Xem DNA phân tích</button>
+        <button class="btn btn-primary" onclick="window.TNTApp.navigate('generator')">✨ Tạo câu chuyện mới</button>
+      </div>
+    </section>
+
+    <!-- ─────────────── PAGE: GENERATOR ─────────────── -->
+    <section class="page page-section hidden" id="page-generator">
+      <div class="page-title">✨ Tạo Câu Chuyện</div>
+      <div class="page-subtitle">Chọn preset, điền thông tin, để AI tạo ra câu chuyện theo DNA của từng thể loại</div>
+
+      <!-- Step 1: Choose preset -->
+      <div class="section-title">Bước 1: Chọn thể loại <span>Preset</span></div>
+      <div class="presets-grid" id="preset-cards"></div>
+
+      <!-- DNA Panel (shown after selecting preset) -->
+      <div id="dna-panel" class="hidden" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem;animation:slideUp 0.3s ease">
+        <div class="flex items-center justify-between mb-2">
+          <h3 id="dna-title" class="section-title" style="margin-bottom:0">DNA Phân Tích</h3>
+          <span class="badge badge-gold">Đang chọn</span>
+        </div>
+        <div class="form-row" style="gap:1.5rem">
+          <div>
+            <div style="font-size:0.78rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem">Cốt Lõi DNA</div>
+            <ul id="dna-core" style="color:var(--text-secondary);font-size:0.88rem;line-height:2"></ul>
+          </div>
+          <div>
+            <div style="font-size:0.78rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem">Phong Cách Thoại</div>
+            <p id="dna-style" style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7"></p>
+            <div style="font-size:0.78rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin:0.75rem 0 0.5rem">Hook Mẫu</div>
+            <ul id="dna-hooks" style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8;font-style:italic"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Customize -->
+      <div class="section-title">Bước 2: Tùy chỉnh câu chuyện</div>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin-bottom:1.5rem">
+        <div class="generator-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inp-title">Tiêu đề (tùy chọn)</label>
+              <input type="text" id="inp-title" placeholder="Để trống để tự động tạo tiêu đề..." />
+            </div>
+            <div class="form-group">
+              <label for="inp-tone">Tone câu chuyện</label>
+              <select id="inp-tone">
+                <option value="auto">🔀 Tự động theo preset</option>
+                <option value="dark">🌑 Tối tăm & Căng thẳng</option>
+                <option value="emotional">💔 Cảm xúc & Chữa lành</option>
+                <option value="thriller">⚡ Thriller & Hồi hộp</option>
+                <option value="romance">🌹 Lãng mạn & Hy vọng</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inp-protagonist">Tên nhân vật chính (tùy chọn)</label>
+              <input type="text" id="inp-protagonist" placeholder="Để trống để dùng tên mặc định..." />
+            </div>
+            <div class="form-group">
+              <label for="inp-antagonist">Tên nhân vật đối lập (tùy chọn)</label>
+              <input type="text" id="inp-antagonist" placeholder="Để trống để dùng tên mặc định..." />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inp-setting">Bối cảnh cụ thể (tùy chọn)</label>
+            <input type="text" id="inp-setting" placeholder="Ví dụ: Doanh trại vùng núi miền Bắc, mùa đông năm 2019..." />
+          </div>
+          <div class="form-group">
+            <label for="inp-episodes">Số tập: <strong id="episodes-display" style="color:var(--gold)">8</strong></label>
+            <input type="range" id="inp-episodes" min="1" max="20" value="8" />
+            <div class="range-labels"><span>1 tập</span><span>10 tập</span><span>20 tập</span></div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="flex items-center gap-2" style="flex-wrap:wrap">
+          <button class="btn btn-primary btn-lg" id="btn-generate" disabled>
+            <span id="gen-spinner" class="spinner-sm spinner hidden" style="border-top-color:#0d0d1a"></span>
+            ✨ Tạo câu chuyện
+          </button>
+          <button class="btn btn-outline" id="btn-regenerate">🔄 Tạo lại</button>
+          <span style="color:var(--text-muted);font-size:0.82rem">Chọn preset trước để bật nút tạo</span>
+        </div>
+      </div>
+
+      <!-- Step 3: Output -->
+      <div id="output-panel" class="output-panel hidden">
+        <div class="output-header">
+          <div>
+            <div id="output-badge" style="font-size:0.85rem;font-weight:700;margin-bottom:0.35rem"></div>
+            <div class="output-title" id="output-title"></div>
+            <div id="output-themes" class="flex gap-1 mt-1" style="flex-wrap:wrap"></div>
+          </div>
+          <div class="output-actions">
+            <button class="btn btn-outline btn-sm" id="btn-save">💾 Lưu vào thư viện</button>
+          </div>
+        </div>
+
+        <!-- Synopsis -->
+        <div class="section-header">
+          <h3>📖 Tóm tắt câu chuyện</h3>
+        </div>
+        <div class="synopsis-block" id="output-synopsis"></div>
+
+        <!-- Characters -->
+        <div class="section-header">
+          <h3>👥 Nhân vật</h3>
+        </div>
+        <div class="characters-grid" id="output-characters"></div>
+
+        <!-- Episodes -->
+        <div class="section-header">
+          <h3>🎬 Các tập phim</h3>
+          <div class="count" id="ep-count">0</div>
+        </div>
+        <div class="episodes-grid" id="output-episodes"></div>
+
+        <hr class="divider" />
+
+        <!-- Export -->
+        <div class="section-title">📤 Xuất câu chuyện</div>
+        <div class="export-options">
+          <button class="export-option" data-format="txt">
+            <span class="export-option__icon">📄</span> Text thuần (.txt)
+          </button>
+          <button class="export-option" data-format="markdown">
+            <span class="export-option__icon">📝</span> Markdown (.md)
+          </button>
+          <button class="export-option" data-format="json">
+            <span class="export-option__icon">💾</span> JSON (.json)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────── PAGE: LIBRARY ─────────────── -->
+    <section class="page page-section hidden" id="page-library">
+      <div class="page-title">📚 Thư Viện Dự Án</div>
+      <div class="page-subtitle">Tất cả câu chuyện đã lưu của bạn</div>
+
+      <div class="flex items-center gap-2 mb-2" style="flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <input type="text" id="library-search" placeholder="🔍 Tìm kiếm theo tiêu đề hoặc tóm tắt..." style="max-width:420px" />
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="window.TNTApp.navigate('generator')">+ Tạo mới</button>
+      </div>
+
+      <div id="library-list" class="library-list mt-2"></div>
+    </section>
+
+    <!-- ─────────────── PAGE: DNA ANALYSIS ─────────────── -->
+    <section class="page page-section hidden" id="page-dna">
+      <div class="page-title">🧬 DNA Phân Tích</div>
+      <div class="page-subtitle">Cấu trúc DNA chi tiết của từng thể loại preset — nền tảng tạo nên câu chuyện chất lượng</div>
+
+      <div id="dna-full-analysis">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+  </div><!-- /main-content -->
+</div><!-- /app-shell -->
+
+<!-- ═══════════════════ MODAL ═══════════════════ -->
+<div class="overlay hidden" id="modal-overlay">
+  <div class="modal">
+    <div class="modal__header">
+      <div class="modal__title" id="modal-title">Xác nhận</div>
+      <button class="btn btn-ghost btn-icon btn-sm" onclick="document.getElementById('modal-overlay').classList.add('hidden')">✕</button>
+    </div>
+    <div id="modal-body" style="color:var(--text-secondary);line-height:1.7"></div>
+    <div class="modal__footer">
+      <button class="btn btn-outline btn-sm" id="modal-cancel">Hủy</button>
+      <button class="btn btn-primary btn-sm" id="modal-confirm">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TOAST CONTAINER ═══════════════════ -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ═══════════════════ MOBILE MENU BUTTON ═══════════════════ -->
+<script>
+  // Show mobile menu button on small screens
+  if (window.innerWidth <= 900) {
+    document.getElementById('btn-menu').style.display = 'flex';
+  }
+</script>
+
+<!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+<script src="src/data/dna-presets.js"></script>
+<script src="src/engine/story-generator.js"></script>
+<script src="src/engine/project-manager.js"></script>
+<script src="src/app.js"></script>
+
+<!-- DNA Full Analysis Page Renderer -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Render DNA analysis page
+  var container = document.getElementById('dna-full-analysis');
+  if (!container || !window.DNA_PRESETS) return;
+
+  var COLORS = {
+    doanhTraiHanQuoc:    '#4a9eff',
+    quanDoiTraDuaHanQuoc:'#e8304a',
+    haoMonLatMatNhatBan: '#9b59b6',
+    giaDinhCamXucNhatBan:'#ff6b9d',
+    japanShockSerialized:'#00d4aa',
+  };
+
+  var html = Object.values(window.DNA_PRESETS).map(function(preset) {
+    var color = COLORS[preset.id] || '#f5a623';
+    return '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem;border-top:3px solid '+color+'">' +
+      '<div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem">' +
+        '<span style="font-size:2rem">'+preset.emoji+'</span>' +
+        '<div>' +
+          '<h2 style="font-size:1.2rem;font-weight:800">'+preset.name+'</h2>' +
+          '<p style="color:var(--text-secondary);font-size:0.88rem">'+preset.shortDesc+'</p>' +
+        '</div>' +
+      '</div>' +
+
+      '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">' +
+
+        '<div>' +
+          '<div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.6rem">🧬 DNA Cốt Lõi</div>' +
+          '<ul style="color:var(--text-secondary);font-size:0.88rem;line-height:2">'+
+            preset.coreDNA.map(function(d){return '<li style="padding-left:0.5rem;border-left:2px solid '+color+';margin-bottom:0.35rem">'+d+'</li>';}).join('') +
+          '</ul>' +
+        '</div>' +
+
+        '<div>' +
+          '<div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.6rem">⚡ Kiểu Xung Đột</div>' +
+          '<ul style="color:var(--text-secondary);font-size:0.88rem;line-height:2">'+
+            preset.conflictTypes.map(function(c){return '<li>• '+c+'</li>';}).join('') +
+          '</ul>' +
+          '<div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin:1rem 0 0.6rem">🔄 Plot Twist</div>' +
+          '<ul style="color:var(--text-secondary);font-size:0.88rem;line-height:2">'+
+            preset.plotTwistFormulas.map(function(t){return '<li>↩ '+t+'</li>';}).join('') +
+          '</ul>' +
+        '</div>' +
+
+        '<div>' +
+          '<div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.6rem">💬 Phong Cách Thoại</div>' +
+          '<p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;background:var(--bg-input);padding:0.75rem;border-radius:var(--radius-sm)">'+preset.dialogueStyle+'</p>' +
+          '<div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin:1rem 0 0.6rem">🎯 Hook Mẫu</div>' +
+          '<ul style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8;font-style:italic">'+
+            preset.hooks.map(function(h){return '<li style="margin-bottom:0.5rem;padding:0.5rem;background:rgba(245,166,35,0.04);border-radius:var(--radius-sm)">❝ '+h+' ❞</li>';}).join('') +
+          '</ul>' +
+        '</div>' +
+
+      '</div>' + // grid
+
+      '<div style="margin-top:1.5rem">' +
+        '<div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem">🏗️ Cấu Trúc Arc</div>' +
+        '<div style="display:flex;gap:0.75rem;flex-wrap:wrap">'+
+          preset.arcStructure.map(function(arc,i){
+            return '<div style="flex:1;min-width:200px;background:var(--bg-input);border-radius:var(--radius-sm);padding:1rem">' +
+              '<div style="font-size:0.78rem;font-weight:700;color:'+color+';margin-bottom:0.5rem">'+arc.name+'</div>' +
+              '<ul style="font-size:0.82rem;color:var(--text-secondary);line-height:1.8">'+
+                arc.beats.map(function(b){return '<li>▸ '+b+'</li>';}).join('') +
+              '</ul></div>';
+          }).join('') +
+        '</div>' +
+      '</div>' +
+
+      '<div style="margin-top:1rem;text-align:right">' +
+        '<button class="btn btn-sm" style="background:'+color+';color:'+(preset.id==='japanShockSerialized'?'#0d0d1a':'#fff')+'" onclick="window.TNTApp.navigate(\'generator\')" >✨ Tạo truyện với preset này</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  container.innerHTML = html;
+});
+</script>
+
+</body>
+</html>
