@@ -1,0 +1,11 @@
+{
+  "name": "tnt-studio-v2",
+  "version": "2.0.0",
+  "private": true,
+  "description": "TNT Studio V2 - desktop story studio for drama/revenge narrative planning and generation.",
+  "main": "main.js",
+  "author": "TNT Studio",
+  "dependencies": {
+    "playwright": "^1.53.2"
+  }
+}
